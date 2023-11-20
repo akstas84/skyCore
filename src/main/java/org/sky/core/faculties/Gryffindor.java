@@ -1,0 +1,50 @@
+package org.sky.core.faculties;
+
+import org.sky.core.Hogwarts;
+
+public class Gryffindor extends Hogwarts {
+
+    private int nobility = 1;
+    private int honor = 1;
+    private int bravery = 1;
+
+    public Gryffindor() {
+    }
+
+    public Gryffindor(int magicPower, int transgressionDistance, int nobility, int honor, int bravery) {
+        super(magicPower, transgressionDistance);
+        this.nobility = nobility;
+        this.honor = honor;
+        this.bravery = bravery;
+    }
+
+
+    public void getBestGryffindorStudent(Gryffindor firstGryffindorStudent, Gryffindor secGryffindorStudent) {
+        int firstStudTotalPoints = firstGryffindorStudent.getBravery() + firstGryffindorStudent.getNobility() + firstGryffindorStudent.getHonor();
+        int secStudTotalPoints = secGryffindorStudent.getBravery() + secGryffindorStudent.getNobility() + secGryffindorStudent.getHonor();
+
+        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : secGryffindorStudent.getName();
+        System.out.println(bestSt + " лучший Гриффиндорец");
+    }
+
+    public int getNobility() {
+        return nobility;
+    }
+
+    public int getHonor() {
+        return honor;
+    }
+
+    public int getBravery() {
+        return bravery;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nGryffindor{" +
+                "nobility=" + nobility +
+                ", honor=" + honor +
+                ", bravery=" + bravery +
+                '}';
+    }
+}
