@@ -14,11 +14,11 @@ public class Hufflepuff extends Hogwarts {
         this.honest = honest;
     }
 
-    public void getBestHufflepuffStudent(Hufflepuff firstGryffindorStudent, Hufflepuff secGryffindorStudent) {
+    public void getBestHufflepuffStudent(Hufflepuff firstGryffindorStudent) {
         int firstStudTotalPoints = firstGryffindorStudent.getHardworking() + firstGryffindorStudent.getLoyal() + firstGryffindorStudent.getHonest();
-        int secStudTotalPoints = secGryffindorStudent.getHardworking() + secGryffindorStudent.getLoyal() + secGryffindorStudent.getHonest();
+        int secStudTotalPoints = this.getHardworking() + this.getLoyal() + this.getHonest();
 
-        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : secGryffindorStudent.getName();
+        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : this.getName();
         System.out.println(bestSt + " лучший Пуфендуец");
     }
 

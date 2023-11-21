@@ -19,11 +19,11 @@ public class Gryffindor extends Hogwarts {
     }
 
 
-    public void getBestGryffindorStudent(Gryffindor firstGryffindorStudent, Gryffindor secGryffindorStudent) {
+    public void getBestGryffindorStudent(Gryffindor firstGryffindorStudent) {
         int firstStudTotalPoints = firstGryffindorStudent.getBravery() + firstGryffindorStudent.getNobility() + firstGryffindorStudent.getHonor();
-        int secStudTotalPoints = secGryffindorStudent.getBravery() + secGryffindorStudent.getNobility() + secGryffindorStudent.getHonor();
+        int secStudTotalPoints = this.getBravery() + this.getNobility() + this.getHonor();
 
-        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : secGryffindorStudent.getName();
+        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : this.getName();
         System.out.println(bestSt + " лучший Гриффиндорец");
     }
 

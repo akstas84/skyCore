@@ -11,7 +11,7 @@ public class Main {
         Gryffindor gryffindor = new Gryffindor();
         HarryPotter harryPotter = new HarryPotter(4,1,1, 2, 3);
         HermioneGranger hermioneGranger = new HermioneGranger(1, 1, 1, 1, 1);
-        gryffindor.getBestGryffindorStudent(harryPotter, hermioneGranger);
-        hogwarts.comparesPowerMagicAndDistanceTransgression(harryPotter, hermioneGranger);
+        hermioneGranger.getBestGryffindorStudent(harryPotter);
+        hermioneGranger.comparesPowerMagicAndDistanceTransgression(harryPotter);
     }
 }

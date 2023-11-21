@@ -17,13 +17,13 @@ public class Slytherin extends Hogwarts {
         this.thirstPower = thirstPower;
     }
 
-    public void getBestSlytherinStudent(Slytherin firstGryffindorStudent, Slytherin secGryffindorStudent) {
+    public void getBestSlytherinStudent(Slytherin firstGryffindorStudent) {
         int firstStudTotalPoints = firstGryffindorStudent.getCunning() + firstGryffindorStudent.getDetermination()
                 + firstGryffindorStudent.getAmbition() + firstGryffindorStudent.getResourcefulness() + firstGryffindorStudent.getThirstPower();
-        int secStudTotalPoints = secGryffindorStudent.getCunning() + secGryffindorStudent.getDetermination()
-                + secGryffindorStudent.getAmbition() + secGryffindorStudent.getResourcefulness() + secGryffindorStudent.getThirstPower();
+        int secStudTotalPoints = this.getCunning() + this.getDetermination()
+                + this.getAmbition() + this.getResourcefulness() + this.getThirstPower();
 
-        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : secGryffindorStudent.getName();
+        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : this.getName();
         System.out.println(bestSt + " лучший Слизериец");
     }
 

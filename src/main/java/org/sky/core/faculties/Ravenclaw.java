@@ -15,13 +15,13 @@ public class Ravenclaw extends Hogwarts {
         this.creative = creative;
     }
 
-    public void getBestRavenclawStudent(Ravenclaw firstGryffindorStudent, Ravenclaw secGryffindorStudent) {
+    public void getBestRavenclawStudent(Ravenclaw firstGryffindorStudent) {
         int firstStudTotalPoints = firstGryffindorStudent.getSmart() + firstGryffindorStudent.getWise()
                 + firstGryffindorStudent.getWitty() + firstGryffindorStudent.getCreative();
-        int secStudTotalPoints = secGryffindorStudent.getSmart() + secGryffindorStudent.getWise()
-                + secGryffindorStudent.getWitty() + secGryffindorStudent.getCreative();
+        int secStudTotalPoints = this.getSmart() + this.getWise()
+                + this.getWitty() + this.getCreative();
 
-        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : secGryffindorStudent.getName();
+        String bestSt = (firstStudTotalPoints > secStudTotalPoints) ? firstGryffindorStudent.getName() : this.getName();
         System.out.println(bestSt + " лучший Когтевранец");
     }
 
