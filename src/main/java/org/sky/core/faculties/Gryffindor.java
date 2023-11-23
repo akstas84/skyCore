@@ -11,13 +11,12 @@ public class Gryffindor extends Hogwarts {
     public Gryffindor() {
     }
 
-    public Gryffindor(int magicPower, int transgressionDistance, int nobility, int honor, int bravery) {
-        super(magicPower, transgressionDistance);
+    public Gryffindor(String name, int magicPower, int transgressionDistance, int nobility, int honor, int bravery) {
+        super(name, magicPower, transgressionDistance);
         this.nobility = nobility;
         this.honor = honor;
         this.bravery = bravery;
     }
-
 
     public void getBestGryffindorStudent(Gryffindor firstGryffindorStudent) {
         int firstStudTotalPoints = firstGryffindorStudent.getBravery() + firstGryffindorStudent.getNobility() + firstGryffindorStudent.getHonor();

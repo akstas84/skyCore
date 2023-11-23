@@ -2,18 +2,18 @@ package org.sky.core;
 
 public class Hogwarts {
 
+    private String name;
     private int magicPower;
     private int transgressionDistance;
 
     public Hogwarts(){
     }
 
-    public Hogwarts(int magicPower, int transgressionDistance) {
+    public Hogwarts(String name, int magicPower, int transgressionDistance) {
+        this.name = name;
         this.magicPower = magicPower;
         this.transgressionDistance = transgressionDistance;
     }
-
-    protected String name;
 
     public void comparesPowerMagicAndDistanceTransgression(Hogwarts firstHogwartsSt) {
         int firstPowerSt = firstHogwartsSt.getMagicPower() + firstHogwartsSt.getTransgressionDistance();
@@ -26,6 +26,7 @@ public class Hogwarts {
             }
         }
     }
+
     public String getName() {
         return name;
     }
