@@ -1,11 +1,9 @@
 package sky.core.org.app.services;
 
-import sky.core.org.app.trasports.ground.Bicycle;
-import sky.core.org.app.trasports.ground.Car;
-import sky.core.org.app.trasports.ground.Truck;
+import sky.core.org.app.Transport;
 
 public interface Service {
 
-    void check(Car car, Bicycle bicycle, Truck truck);
+    void check(Transport transport);
 
 }
