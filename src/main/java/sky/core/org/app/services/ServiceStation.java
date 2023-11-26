@@ -1,5 +1,6 @@
 package sky.core.org.app.services;
 
+import sky.core.org.app.trasports.GroundTransportation;
 import sky.core.org.app.trasports.ground.Bicycle;
 import sky.core.org.app.trasports.ground.Car;
 import sky.core.org.app.trasports.ground.Truck;
@@ -56,6 +57,17 @@ public class ServiceStation implements Service {
             }
             truck.checkEngine();
             truck.checkTrailer();
+        }
+    }
+
+    void check(GroundTransportation transport){
+        if (transport != null) {
+            System.out.println("Обслуживаем " + transport.getModelName());
+            for (int i = 0; i < transport.getWheelsCount(); i++) {
+                transport.updateTyre();
+            }
+            transport.checkEngine();
+            transport.checkTrailer();
         }
     }
 }
