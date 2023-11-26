@@ -40,7 +40,7 @@ public class ServiceStation implements Service {
     }
 
     public void check(Bicycle bicycle) {
-        if(bicycle != null) {
+        if (bicycle != null) {
             System.out.println("Обслуживаем " + bicycle.getModelName());
             for (int i = 0; i < bicycle.getWheelsCount(); i++) {
                 bicycle.updateTyre();
