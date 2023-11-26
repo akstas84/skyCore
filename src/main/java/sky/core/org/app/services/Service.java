@@ -6,4 +6,5 @@ import sky.core.org.app.trasports.ground.Truck;
 
 public interface Service {
     void check(Car car, Bicycle bicycle, Truck truck);
+
 }
