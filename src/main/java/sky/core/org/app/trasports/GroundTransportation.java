@@ -22,6 +22,11 @@ public class GroundTransportation extends ServiceStation implements Transportati
         System.out.println("Проверяем прицеп");
     }
 
+    @Override
+    public void service() {
+
+    }
+
     public void setModelName(String setModelName) {
         this.modelName = setModelName;
     }

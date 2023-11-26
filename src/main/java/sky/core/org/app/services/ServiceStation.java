@@ -7,7 +7,7 @@ import sky.core.org.app.trasports.ground.Truck;
 
 public class ServiceStation implements Service {
 
-    @Override
+
     public void check(Car car, Bicycle bicycle, Truck truck) {
         if (car != null) {
             System.out.println("Обслуживаем " + car.getModelName());
@@ -60,14 +60,4 @@ public class ServiceStation implements Service {
         }
     }
 
-    void check(GroundTransportation transport){
-        if (transport != null) {
-            System.out.println("Обслуживаем " + transport.getModelName());
-            for (int i = 0; i < transport.getWheelsCount(); i++) {
-                transport.updateTyre();
-            }
-            transport.checkEngine();
-            transport.checkTrailer();
-        }
-    }
 }

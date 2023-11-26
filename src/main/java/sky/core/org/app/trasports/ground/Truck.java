@@ -4,4 +4,8 @@ import sky.core.org.app.trasports.GroundTransportation;
 
 public class Truck extends GroundTransportation {
 
+    public void service(){
+
+    }
+
 }

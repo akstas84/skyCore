@@ -9,4 +9,6 @@ public interface Transportation extends Service {
 
     void checkTrailer();
 
+    void service();
+
 }
