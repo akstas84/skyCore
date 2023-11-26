@@ -1,7 +1,12 @@
 package sky.core.org.app;
 
 public abstract class Vehicle implements Transport {
-    private String modelName;
-    private int wheelsCount;
+    public String modelName;
+    public int wheelsCount;
+
+    @Override
+    public void checkTrailer() {
+        System.out.println("Проверяем прицеп");
+    }
 
 }

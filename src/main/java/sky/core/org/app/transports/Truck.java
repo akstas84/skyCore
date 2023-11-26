@@ -1,14 +1,16 @@
-package sky.core.org.app.trasports;
+package sky.core.org.app.transports;
 
 import sky.core.org.app.Transport;
 import sky.core.org.app.Vehicle;
 
 public class Truck extends Vehicle {
 
-    public Truck(String truck1, int i) {
-        super();
+    public Truck(String modelName, int wheelsCount) {
+        this.modelName = modelName;
+        this.wheelsCount = wheelsCount;
     }
 
+    @Override
     public void service(Transport truck) {
         if (truck != null) {
             System.out.println("Обслуживаем " + truck.getModelName());
@@ -22,12 +24,12 @@ public class Truck extends Vehicle {
 
     @Override
     public String getModelName() {
-        return null;
+        return modelName;
     }
 
     @Override
     public int getWheelsCount() {
-        return 0;
+        return wheelsCount;
     }
 
     @Override

@@ -1,10 +1,16 @@
 package sky.core.org.app;
 
-public interface Transport extends HumanPoweredTransport {
+public interface Transport {
 
-    void service();
+    void service(Transport transport);
+
+    void updateTyre();
 
     void checkEngine();
 
     void checkTrailer();
+
+    int getWheelsCount();
+
+    String getModelName();
 }
