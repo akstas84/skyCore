@@ -1,9 +1,8 @@
 package sky.core.org.app.transports;
 
-import sky.core.org.app.Transport;
-import sky.core.org.app.Vehicle;
+import sky.core.org.app.*;
 
-public class Car extends Vehicle {
+public class Car extends WheeledTransport implements CheckEngine {
 
     public Car(String modelName, int wheelsCount) {
         this.modelName = modelName;
@@ -11,29 +10,9 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public void service(Transport car) {
-        if (car != null) {
-            System.out.println("Обслуживаем " + car.getModelName());
-            for (int i = 0; i < car.getWheelsCount(); i++) {
-                car.updateTyre();
-            }
-            car.checkEngine();
-        }
-    }
-
-    @Override
-    public String getModelName() {
-        return modelName;
-    }
-
-    @Override
-    public int getWheelsCount() {
-        return wheelsCount;
-    }
-
-    @Override
-    public void updateTyre() {
-        System.out.println("Меняем покрышку");
+    public void service() {
+        super.service();
+        checkEngine();
     }
 
     @Override

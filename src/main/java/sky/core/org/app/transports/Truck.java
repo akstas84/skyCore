@@ -1,9 +1,8 @@
 package sky.core.org.app.transports;
 
-import sky.core.org.app.Transport;
-import sky.core.org.app.Vehicle;
+import sky.core.org.app.*;
 
-public class Truck extends Vehicle {
+public class Truck extends WheeledTransport implements CheckEngine, CheckTrailer {
 
     public Truck(String modelName, int wheelsCount) {
         this.modelName = modelName;
@@ -11,30 +10,10 @@ public class Truck extends Vehicle {
     }
 
     @Override
-    public void service(Transport truck) {
-        if (truck != null) {
-            System.out.println("Обслуживаем " + truck.getModelName());
-            for (int i = 0; i < truck.getWheelsCount(); i++) {
-                truck.updateTyre();
-            }
-            truck.checkEngine();
-            truck.checkTrailer();
-        }
-    }
-
-    @Override
-    public String getModelName() {
-        return modelName;
-    }
-
-    @Override
-    public int getWheelsCount() {
-        return wheelsCount;
-    }
-
-    @Override
-    public void updateTyre() {
-        System.out.println("Меняем покрышку");
+    public void service() {
+        super.service();
+        checkEngine();
+        checkTrailer();
     }
 
     @Override
@@ -46,4 +25,5 @@ public class Truck extends Vehicle {
     public void checkTrailer() {
         System.out.println("Проверяем прицеп");
     }
+
 }

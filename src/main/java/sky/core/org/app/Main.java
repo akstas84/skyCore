@@ -1,5 +1,6 @@
 package sky.core.org.app;
 
+import sky.core.org.app.services.Service;
 import sky.core.org.app.services.ServiceStation;
 import sky.core.org.app.transports.Bicycle;
 import sky.core.org.app.transports.Car;
@@ -15,7 +16,7 @@ public class Main {
 
         Transport[] transportsArr = {car, truck};
 
-        ServiceStation station = new ServiceStation();
+        Service station = new ServiceStation();
         for (Transport transport : transportsArr) {
             station.check(transport);
         }
