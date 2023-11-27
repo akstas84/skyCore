@@ -2,7 +2,7 @@ package sky.core.org.app.transports;
 
 import sky.core.org.app.*;
 
-public class Truck extends WheeledTransport implements CheckEngine, CheckTrailer {
+public class Truck extends EngineTransport implements CheckEngine, CheckTrailer {
 
     public Truck(String modelName, int wheelsCount) {
         this.modelName = modelName;
@@ -16,12 +16,6 @@ public class Truck extends WheeledTransport implements CheckEngine, CheckTrailer
         checkTrailer();
     }
 
-    @Override
-    public void checkEngine() {
-        System.out.println("Проверяем двигатель");
-    }
-
-    @Override
     public void checkTrailer() {
         System.out.println("Проверяем прицеп");
     }

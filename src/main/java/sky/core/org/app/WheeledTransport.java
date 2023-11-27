@@ -1,7 +1,6 @@
 package sky.core.org.app;
 
 public abstract class WheeledTransport implements Transport, UpdateTyre {
-
     protected String modelName;
     protected int wheelsCount;
 
