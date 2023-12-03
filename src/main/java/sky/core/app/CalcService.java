@@ -11,4 +11,5 @@ public interface CalcService {
     Integer calcMultiply(Integer num1, Integer num2);
 
     Integer calcDivide(Integer num1, Integer num2);
+
 }

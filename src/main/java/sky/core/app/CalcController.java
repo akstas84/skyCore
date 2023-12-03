@@ -1,10 +1,12 @@
 package sky.core.app;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/calculator")
 public class CalcController {
 
     private CalcServiceImpl calcServiceImpl;
@@ -13,27 +15,27 @@ public class CalcController {
         this.calcServiceImpl = calcServiceImpl;
     }
 
-    @GetMapping(path = "calculator")
+    @GetMapping()
     public String welcomeToCalculator() {
         return calcServiceImpl.welcomeToCalculator();
     }
 
-    @GetMapping(path = "calculator/plus")
+    @GetMapping(path = "/plus")
     public Integer calcPlus(@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
         return calcServiceImpl.calcPlus(num1, num2);
     }
 
-    @GetMapping(path = "calculator/minus")
+    @GetMapping(path = "/minus")
     public Integer calcMinus(@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
         return calcServiceImpl.calcMinus(num1, num2);
     }
 
-    @GetMapping(path = "calculator/multiply")
+    @GetMapping(path = "/multiply")
     public Integer calcMultiply(@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
         return calcServiceImpl.calcMultiply(num1, num2);
     }
 
-    @GetMapping(path = "calculator/divide")
+    @GetMapping(path = "/divide")
     public Integer calcDivide(@RequestParam("num1") Integer num1, @RequestParam("num2") Integer num2) {
         return calcServiceImpl.calcDivide(num1, num2);
     }

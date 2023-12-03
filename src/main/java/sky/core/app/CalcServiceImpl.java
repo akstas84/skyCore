@@ -27,7 +27,11 @@ public class CalcServiceImpl implements CalcService {
 
     @Override
     public Integer calcDivide(Integer num1, Integer num2) {
-        return num1 / num2;
+        Integer result = null;
+        if(num2 != 0){
+            result = num1 / num2;
+        }
+        return  result;
     }
 
 }
