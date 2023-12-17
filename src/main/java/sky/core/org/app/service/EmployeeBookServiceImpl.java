@@ -6,22 +6,28 @@ import sky.core.org.app.exceptions.EmployeeAlreadyAddedException;
 import sky.core.org.app.exceptions.EmployeeNotFoundException;
 import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
 
+import java.util.*;
+
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
 
-    private Employee[] employeesArr = new Employee[10];
+    private List<Employee> employeesList;
 
     EmployeeBookServiceImpl() {
-        employeesArr[0] = new Employee("Vasya", "Vasin");
-        employeesArr[1] = new Employee("Kolya", "Kolin");
-        employeesArr[2] = new Employee("Vera", "Verina");
-        employeesArr[3] = new Employee("Olesya", "Olesina");
-        employeesArr[4] = new Employee("Petya", "Petin");
-        employeesArr[5] = new Employee("Stas", "St");
-        employeesArr[6] = new Employee("Diana", "Di");
-        employeesArr[7] = new Employee("Olya", "Ol");
-        employeesArr[8] = new Employee("Valera", "Delaay");
-        employeesArr[9] = new Employee("Grisha", "Gr");
+        employeesList = new ArrayList<>() {
+            {
+                add(new Employee("Vasya", "Vasin"));
+                add(new Employee("Kolya", "Kolin"));
+                add(new Employee("Vera", "Verina"));
+                add(new Employee("Olesya", "Olesina"));
+                add(new Employee("Petya", "Petin"));
+                add(new Employee("Stas", "St"));
+                add(new Employee("Diana", "Di"));
+                add(new Employee("Olya", "Ol"));
+                add(new Employee("Valera", "Delaay"));
+                add(new Employee("Grisha", "Gr"));
+            }
+        };
     }
 
     @Override
@@ -33,9 +39,9 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee addedEmployee = null;
         int limitEmployee = 10;
-        for (Employee employee : employeesArr) {
+        for (Employee employee : employeesList) {
             if (employee == null) {
-                if (employeesArr.length >= limitEmployee) {
+                if (employeesList.size() >= limitEmployee) {
                     throw new EmployeeStorageIsFullException("Количество сотрудников не может превышать 10");
                 }
                 if (employee.getFirstName() == firstName && employee.getLastName() == lastName) {
@@ -53,9 +59,9 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     @Override
     public void removeEmployee(String firstName, String lastName) {
-        for (int i = 0; i < employeesArr.length; i++) {
-            if (employeesArr[i] != null && employeesArr[i].getFirstName() == firstName && employeesArr[i].getLastName() == lastName) {
-                employeesArr[i] = null;
+        for (Employee employee : employeesList) {
+            if (employee != null && employee.getFirstName() == firstName && employee.getLastName() == lastName) {
+                employee = null;
                 break;
             }
         }
@@ -64,7 +70,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     @Override
     public void findEmployee(String firstName, String lastName) {
-        for (Employee employee : employeesArr) {
+        for (Employee employee : employeesList) {
             if (employee != null && employee.getFirstName() == firstName && employee.getLastName() == lastName) {
                 System.out.println(employee);
             }
