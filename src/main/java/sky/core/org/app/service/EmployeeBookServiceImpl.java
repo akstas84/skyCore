@@ -25,7 +25,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
                 add(new Employee("Diana", "Di"));
                 add(new Employee("Olya", "Ol"));
                 add(new Employee("Valera", "Delaay"));
-                add(new Employee("Grisha", "Gr"));
+                add(new Employee("Gr", "Gr"));
             }
         };
     }
@@ -36,45 +36,38 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     }
 
     @Override
-    public Employee addNewEmployee(String firstName, String lastName) {
-        Employee addedEmployee = null;
+    public void addNewEmployee(String firstName, String lastName) {
         int limitEmployee = 10;
-        for (Employee employee : employeesList) {
-            if (employee == null) {
-                if (employeesList.size() >= limitEmployee) {
-                    throw new EmployeeStorageIsFullException("Количество сотрудников не может превышать 10");
-                }
-                if (employee.getFirstName() == firstName && employee.getLastName() == lastName) {
-                    throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
-                }
-                if (employee.getFirstName() != firstName && employee.getLastName() != lastName) {
-                    addedEmployee = new Employee(firstName, lastName);
-                    System.out.println("Сотрудник добавлен");
-                    break;
-                }
-            }
+        if (employeesList.size() >= limitEmployee) {
+            throw new EmployeeStorageIsFullException("Количество сотрудников не может превышать 10");
         }
-        return addedEmployee;
+        if (listIsContainsEmployee(firstName, lastName, employeesList)) {
+            throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
+        }
+        if (!listIsContainsEmployee(firstName, lastName, employeesList)) {
+            employeesList.add(new Employee(firstName, lastName));
+            System.out.println("Сотрудник добавлен");
+        }
     }
 
     @Override
     public void removeEmployee(String firstName, String lastName) {
-        for (Employee employee : employeesList) {
-            if (employee != null && employee.getFirstName() == firstName && employee.getLastName() == lastName) {
-                employee = null;
-                break;
-            }
+        if (listIsContainsEmployee(firstName, lastName, employeesList)) {
+            employeesList.remove(new Employee(firstName, lastName));
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
     }
 
     @Override
-    public void findEmployee(String firstName, String lastName) {
-        for (Employee employee : employeesList) {
-            if (employee != null && employee.getFirstName() == firstName && employee.getLastName() == lastName) {
-                System.out.println(employee);
-            }
+    public String findEmployee(String firstName, String lastName) {
+        Boolean b = listIsContainsEmployee(firstName, lastName, employeesList);
+        if (listIsContainsEmployee(firstName, lastName, employeesList)) {
+            return "Сотрудник с таким именем найден";
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
+    }
+
+    private static boolean listIsContainsEmployee(String firstName, String lastName, List<Employee> employeesList) {
+        return employeesList.contains(new Employee(firstName, lastName));
     }
 }

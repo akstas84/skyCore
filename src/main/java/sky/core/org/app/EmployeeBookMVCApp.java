@@ -1,4 +1,4 @@
-package sky.core.org.app.main;
+package sky.core.org.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
