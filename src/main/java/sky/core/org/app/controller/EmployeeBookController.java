@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sky.core.org.app.entity.Employee;
 import sky.core.org.app.service.EmployeeBookServiceImpl;
 
 @RestController
@@ -36,4 +37,7 @@ public class EmployeeBookController {
         return employeeBookServiceImpl.welcomeToEmployeeManager();
     }
 
+    public static Employee returnEmployee(String firstName, String lastName) {
+        return new Employee(firstName, lastName);
+    }
 }

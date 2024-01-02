@@ -1,6 +1,7 @@
 package sky.core.org.app.service;
 
 import org.springframework.stereotype.Service;
+import sky.core.org.app.controller.EmployeeBookController;
 import sky.core.org.app.entity.Employee;
 import sky.core.org.app.exceptions.EmployeeAlreadyAddedException;
 import sky.core.org.app.exceptions.EmployeeNotFoundException;
@@ -59,10 +60,11 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     }
 
     @Override
-    public String findEmployee(String firstName, String lastName) {
+    public Employee findEmployee(String firstName, String lastName) {
         Boolean b = listIsContainsEmployee(firstName, lastName, employeesList);
         if (listIsContainsEmployee(firstName, lastName, employeesList)) {
-            return "Сотрудник с таким именем найден";
+//            return "Сотрудник с таким именем найден";
+            return EmployeeBookController.returnEmployee(firstName, lastName);
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
     }
