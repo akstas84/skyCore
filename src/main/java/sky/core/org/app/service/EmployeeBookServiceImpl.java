@@ -17,7 +17,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     EmployeeBookServiceImpl() {
         employeesList = new ArrayList<>() {
             {
-                add(new Employee("Vasya", "Vasin"));
+                add(new Employee("Vs", "Vs"));
                 add(new Employee("Kolya", "Kolin"));
                 add(new Employee("Vera", "Verina"));
                 add(new Employee("Olesya", "Olesina"));
@@ -37,7 +37,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     }
 
     @Override
-    public void addNewEmployee(String firstName, String lastName) {
+    public Employee addNewEmployee(String firstName, String lastName) {
         int limitEmployee = 10;
         if (employeesList.size() >= limitEmployee) {
             throw new EmployeeStorageIsFullException("Количество сотрудников не может превышать 10");
@@ -49,6 +49,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
             employeesList.add(new Employee(firstName, lastName));
             System.out.println("Сотрудник добавлен");
         }
+        return null;
     }
 
     @Override
@@ -63,7 +64,6 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee findEmployee(String firstName, String lastName) {
         Boolean b = listIsContainsEmployee(firstName, lastName, employeesList);
         if (listIsContainsEmployee(firstName, lastName, employeesList)) {
-//            return "Сотрудник с таким именем найден";
             return EmployeeBookController.returnEmployee(firstName, lastName);
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");

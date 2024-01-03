@@ -7,7 +7,7 @@ public interface EmployeeBookService {
 
     String welcomeToEmployeeManager();
 
-    void addNewEmployee(String firstName, String lastName);
+    Employee addNewEmployee(String firstName, String lastName);
 
     void removeEmployee(String firstName, String lastName);
 
