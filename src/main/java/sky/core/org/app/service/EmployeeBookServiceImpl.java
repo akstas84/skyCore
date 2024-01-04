@@ -9,6 +9,8 @@ import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
 
 import java.util.*;
 
+import static sky.core.org.app.controller.EmployeeBookController.returnEmployee;
+
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
 
@@ -17,7 +19,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     EmployeeBookServiceImpl() {
         employeesList = new ArrayList<>() {
             {
-                add(new Employee("Vs", "Vs"));
+                add(new Employee("St", "St"));
                 add(new Employee("Kolya", "Kolin"));
                 add(new Employee("Vera", "Verina"));
                 add(new Employee("Olesya", "Olesina"));
@@ -49,7 +51,7 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
             employeesList.add(new Employee(firstName, lastName));
             System.out.println("Сотрудник добавлен");
         }
-        return null;
+        return returnEmployee(firstName, lastName);
     }
 
     @Override
@@ -62,9 +64,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     @Override
     public Employee findEmployee(String firstName, String lastName) {
-        Boolean b = listIsContainsEmployee(firstName, lastName, employeesList);
         if (listIsContainsEmployee(firstName, lastName, employeesList)) {
-            return EmployeeBookController.returnEmployee(firstName, lastName);
+            return returnEmployee(firstName, lastName);
         }
         throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
     }

@@ -2,6 +2,7 @@ package sky.core.org.app.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sky.core.org.app.entity.Employee;
 import sky.core.org.app.service.EmployeeBookServiceImpl;
@@ -17,17 +18,17 @@ public class EmployeeBookController {
     }
 
     @GetMapping(path = "/add")
-    public void addNewEmployee(String firstName, String lastName) {
+    public void addNewEmployee(@RequestParam String firstName, @RequestParam String lastName) {
         employeeBookServiceImpl.addNewEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/remove")
-    public void removeEmployee(String firstName, String lastName) {
+    public void removeEmployee(@RequestParam String firstName, @RequestParam String lastName) {
         employeeBookServiceImpl.removeEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/find")
-    public void findEmployee(String firstName, String lastName) {
+    public void findEmployee(@RequestParam String firstName, @RequestParam String lastName) {
         employeeBookServiceImpl.findEmployee(firstName, lastName);
     }
 
@@ -36,7 +37,7 @@ public class EmployeeBookController {
         return employeeBookServiceImpl.welcomeToEmployeeManager();
     }
 
-    public static Employee returnEmployee(String firstName, String lastName) {
+    public static Employee returnEmployee(@RequestParam String firstName, @RequestParam String lastName) {
         return new Employee(firstName, lastName);
     }
 }
