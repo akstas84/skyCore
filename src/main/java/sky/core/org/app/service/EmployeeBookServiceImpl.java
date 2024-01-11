@@ -8,8 +8,6 @@ import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
 
 import java.util.*;
 
-import static sky.core.org.app.controller.EmployeeBookController.returnEmployee;
-
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
 
@@ -17,16 +15,6 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     EmployeeBookServiceImpl() {
         employeesMap = new HashMap<>();
-        employeesMap.put("1", new Employee("St", "St"));
-        employeesMap.put("2", new Employee("Kolya", "Kolin"));
-        employeesMap.put("3", new Employee("Vera", "Verina"));
-        employeesMap.put("4", new Employee("Olesya", "Olesina"));
-        employeesMap.put("5", new Employee("Petya", "Petin"));
-        employeesMap.put("6", new Employee("Stas", "St"));
-        employeesMap.put("7", new Employee("Diana", "Di"));
-        employeesMap.put("8", new Employee("Olya", "Ol"));
-        employeesMap.put("9", new Employee("Valera", "Delaay"));
-        employeesMap.put("10", new Employee("Gr", "Gr"));
     }
 
     @Override
@@ -44,11 +32,11 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         if (employeesMap.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
         }
-        if (!employeesMap.containsKey(employee.getFullName())) {
+        else {
             employeesMap.put(employee.getFullName(), employee);
-            System.out.println("Сотрудник добавлен");
+            System.out.println("Сотрудникс именем " + employee.getFullName() + "  добавлен");
         }
-        return returnEmployee(firstName, lastName);
+        return new Employee(firstName, lastName);
     }
 
     @Override
@@ -56,20 +44,22 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         Employee employee = new Employee(firstName, lastName);
         if (employeesMap.containsKey(employee.getFullName())) {
             employeesMap.remove(employee.getFullName());
+            System.out.println("Сотрудник с именем " + employee.getFullName() + " удалён");
         }
-        throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
+        else {
+            throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
+        }
     }
 
     @Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         if (employeesMap.containsKey(employee.getFullName())) {
+            System.out.println("Сотрудник с именем " + employee.getFullName() + " уже есть в справочнике");
             return employeesMap.get(employee.getFullName());
         }
-        throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
-    }
-
-    private static boolean listIsContainsEmployee(String firstName, String lastName, Map<Integer, Employee> employeesMap) {
-        return employeesMap.containsValue(new Employee(firstName, lastName));
+        else {
+            throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
+        }
     }
 }

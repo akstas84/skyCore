@@ -4,14 +4,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sky.core.org.app.entity.Employee;
+import sky.core.org.app.service.EmployeeBookService;
 import sky.core.org.app.service.EmployeeBookServiceImpl;
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeBookController {
 
-    private EmployeeBookServiceImpl employeeBookServiceImpl;
+    private EmployeeBookService employeeBookServiceImpl;
 
     public EmployeeBookController(EmployeeBookServiceImpl employeeBookServiceImpl) {
         this.employeeBookServiceImpl = employeeBookServiceImpl;
@@ -35,9 +35,5 @@ public class EmployeeBookController {
     @GetMapping(path = "/home")
     public String welcomeToEmployeeManager() {
         return employeeBookServiceImpl.welcomeToEmployeeManager();
-    }
-
-    public static Employee returnEmployee(@RequestParam String firstName, @RequestParam String lastName) {
-        return new Employee(firstName, lastName);
     }
 }
