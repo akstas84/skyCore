@@ -6,11 +6,21 @@ public class Employee {
 
     private final String firstName;
     private final String lastName;
+    private String departmentName;
+    private double employeeSalary;
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Employee(String firstName, String lastName, String departmentName, double employeeSalary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.departmentName = departmentName;
+        this.employeeSalary = employeeSalary;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -22,6 +32,14 @@ public class Employee {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public double getSalary() {
+        return employeeSalary;
     }
 
     @Override

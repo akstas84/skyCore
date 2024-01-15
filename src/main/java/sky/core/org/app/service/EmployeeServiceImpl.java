@@ -9,13 +9,16 @@ import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
 import java.util.*;
 
 @Service
-public class EmployeeBookServiceImpl implements EmployeeBookService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private Map<String, Employee> employeesMap;
+    private final Map<String, Employee> employees;
 
-    EmployeeBookServiceImpl() {
-        employeesMap = new HashMap<>();
+    public EmployeeServiceImpl() {
+        employees = new HashMap<>();
     }
+
+    EmployeeServiceImpl employeeService;
+
 
     @Override
     public String welcomeToEmployeeManager() {
@@ -26,14 +29,13 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         int limitEmployee = 10;
-        if (employeesMap.size() >= limitEmployee) {
+        if (employees.size() >= limitEmployee) {
             throw new EmployeeStorageIsFullException("Количество сотрудников не может превышать 10");
         }
-        if (employeesMap.containsKey(employee.getFullName())) {
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
-        }
-        else {
-            employeesMap.put(employee.getFullName(), employee);
+        } else {
+            employees.put(employee.getFullName(), employee);
             System.out.println("Сотрудникс именем " + employee.getFullName() + "  добавлен");
         }
         return new Employee(firstName, lastName);
@@ -42,11 +44,10 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     @Override
     public void removeEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employeesMap.containsKey(employee.getFullName())) {
-            employeesMap.remove(employee.getFullName());
+        if (employees.containsKey(employee.getFullName())) {
+            employees.remove(employee.getFullName());
             System.out.println("Сотрудник с именем " + employee.getFullName() + " удалён");
-        }
-        else {
+        } else {
             throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
         }
     }
@@ -54,12 +55,13 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     @Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employeesMap.containsKey(employee.getFullName())) {
+        if (employees.containsKey(employee.getFullName())) {
             System.out.println("Сотрудник с именем " + employee.getFullName() + " уже есть в справочнике");
-            return employeesMap.get(employee.getFullName());
-        }
-        else {
+            return employees.get(employee.getFullName());
+        } else {
             throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
         }
     }
+
+
 }

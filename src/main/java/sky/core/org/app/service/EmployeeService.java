@@ -3,7 +3,7 @@ package sky.core.org.app.service;
 
 import sky.core.org.app.entity.Employee;
 
-public interface EmployeeBookService {
+public interface EmployeeService {
 
     String welcomeToEmployeeManager();
 
@@ -12,4 +12,5 @@ public interface EmployeeBookService {
     void removeEmployee(String firstName, String lastName);
 
     Employee findEmployee(String firstName, String lastName);
+
 }
