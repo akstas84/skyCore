@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface EmployeeService {
 
-    Collection<Employee> returnValues();
+    Collection<Employee> findAll();
 
     String welcomeToEmployeeManager();
 

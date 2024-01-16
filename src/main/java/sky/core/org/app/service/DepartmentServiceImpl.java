@@ -16,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     //    1. Возвращать сотрудника с максимальной зарплатой на основе номера отдела, который приходит в запрос из браузера. /departments/max-salary?departmentId=5
 //    @Override
     public Employee findEmployeeWithMaximumSalary(int departmentId) {
-        return employeeService.returnValues().findAll
+        return employeeService.findAll().stream()
 
     }
 
