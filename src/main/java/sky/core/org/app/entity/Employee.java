@@ -6,18 +6,18 @@ public class Employee {
 
     private final String firstName;
     private final String lastName;
-    private String departmentName;
-    private double employeeSalary;
+    private int departmentId;
+    private int employeeSalary;
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Employee(String firstName, String lastName, String departmentName, double employeeSalary) {
+    public Employee(String firstName, String lastName, int departmentId, int employeeSalary) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.departmentName = departmentName;
+        this.departmentId = departmentId;
         this.employeeSalary = employeeSalary;
     }
 
@@ -34,11 +34,11 @@ public class Employee {
         return firstName + " " + lastName;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public double getSalary() {
+    public int getSalary() {
         return employeeSalary;
     }
 

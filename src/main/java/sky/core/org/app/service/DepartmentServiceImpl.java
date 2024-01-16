@@ -2,6 +2,16 @@ package sky.core.org.app.service;
 
 import org.springframework.stereotype.Service;
 import sky.core.org.app.entity.Employee;
+import sky.core.org.app.exceptions.EmployeeNotFoundException;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -12,23 +22,38 @@ public class DepartmentServiceImpl implements DepartmentService {
         this.employeeService = employeeService;
     }
 
-
-    //    1. Возвращать сотрудника с максимальной зарплатой на основе номера отдела, который приходит в запрос из браузера. /departments/max-salary?departmentId=5
-//    @Override
-    public Employee findEmployeeWithMaximumSalary(int departmentId) {
-        return employeeService.findAll().stream()
-
+    @Override
+    public Employee findEmployeeWithMaxSalary(int departmentId) {
+        return employeeService
+                .findAll()
+                .stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .max(comparingInt(Employee::getSalary))
+                .orElseThrow(() -> new EmployeeNotFoundException("сотрудник не найден"));
     }
 
+    @Override
+    public Employee findEmployeeWithMinSalary(int departmentId) {
+        return employeeService
+                .findAll()
+                .stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .min(comparingInt(Employee::getSalary))
+                .orElseThrow(() -> new EmployeeNotFoundException("сотрудник не найден"));
+    }
 
+    @Override
+    public Collection<Employee> findEmployeesByDepartmentSortedByNameSurname(int departmentId) {
+        return employeeService.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .sorted(comparing(Employee::getLastName).thenComparing(Employee::getFirstName))
+                .collect(toList());
+    }
 
-    //    2.  Возвращать сотрудника с минимальной зарплатой на основе номера отдела.  /departments/min-salary?departmentId=5
-//    @Override
-//    public Employee findEmployeeWithMinimumSalary(int departmentId) {
-//
-//    }
-
-
-// 3.   Возвращать всех сотрудников по отделу. /departments/all?departmentId=5
-// 4.   Возвращать всех сотрудников с разделением по отделам. /departments/all
+    @Override
+    public Map<Integer, List<Employee>> findEmployeesByDepartmentSortedByNameSurname() {
+        return employeeService.findAll().stream()
+                .sorted(comparing(Employee::getLastName).thenComparing(Employee::getFirstName))
+                .collect(groupingBy(Employee::getDepartmentId));
+    }
 }

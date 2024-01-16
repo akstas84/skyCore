@@ -19,9 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> findAll(){
-        return employees.values();
+        return Collections.unmodifiableCollection(employees.values());
     }
-
 
     @Override
     public String welcomeToEmployeeManager() {
@@ -65,6 +64,5 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
         }
     }
-
 
 }
