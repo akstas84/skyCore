@@ -17,7 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employees = new HashMap<>();
     }
 
-    EmployeeServiceImpl employeeService;
+    @Override
+    public Collection<Employee> returnValues(){
+        return employees.values();
+    }
 
 
     @Override

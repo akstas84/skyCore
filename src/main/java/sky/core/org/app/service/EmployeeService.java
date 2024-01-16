@@ -3,7 +3,11 @@ package sky.core.org.app.service;
 
 import sky.core.org.app.entity.Employee;
 
+import java.util.Collection;
+
 public interface EmployeeService {
+
+    Collection<Employee> returnValues();
 
     String welcomeToEmployeeManager();
 
