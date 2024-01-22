@@ -5,8 +5,11 @@ import sky.core.org.app.entity.Employee;
 import sky.core.org.app.exceptions.EmployeeAlreadyAddedException;
 import sky.core.org.app.exceptions.EmployeeNotFoundException;
 import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
+import sky.core.org.app.exceptions.InvalidNameException;
 
 import java.util.*;
+
+import static org.springframework.util.StringUtils.capitalize;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -29,6 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addNewEmployee(String firstName, String lastName) {
+        capitalize(firstName);
+        capitalize(lastName);
         Employee employee = new Employee(firstName, lastName);
         int limitEmployee = 10;
         if (employees.size() >= limitEmployee) {
@@ -62,6 +67,15 @@ public class EmployeeServiceImpl implements EmployeeService {
             return employees.get(employee.getFullName());
         } else {
             throw new EmployeeNotFoundException("Сотрудник с таким именем не найден");
+        }
+    }
+
+    public void isUpperCaseFirstLetterInTheName(String... names) {
+        for (String s : names) {
+            boolean isUpperChar = Character.isUpperCase(s.charAt(0));
+            if (!isUpperChar) {
+                throw new InvalidNameException(s);
+            }
         }
     }
 
