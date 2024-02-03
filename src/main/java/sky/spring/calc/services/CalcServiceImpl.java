@@ -1,6 +1,7 @@
-package sky.core.app;
+package sky.spring.calc.services;
 
 import org.springframework.stereotype.Service;
+import sky.spring.calc.exceptions.DivideArgumentException;
 
 @Service
 public class CalcServiceImpl implements CalcService {
@@ -27,6 +28,9 @@ public class CalcServiceImpl implements CalcService {
 
     @Override
     public Integer calcDivide(Integer num1, Integer num2) {
+        if(num2 == 0){
+            throw new DivideArgumentException("Деление на ноль является математической операцией и не имеет никакого практического значения");
+        }
         Integer result = null;
         if(num2 != 0){
             result = num1 / num2;

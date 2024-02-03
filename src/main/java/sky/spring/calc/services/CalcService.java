@@ -1,4 +1,4 @@
-package sky.core.app;
+package sky.spring.calc.services;
 
 public interface CalcService {
 
