@@ -5,7 +5,7 @@ import sky.core.org.app.entity.Employee;
 import sky.core.org.app.exceptions.EmployeeAlreadyAddedException;
 import sky.core.org.app.exceptions.EmployeeNotFoundException;
 import sky.core.org.app.exceptions.EmployeeStorageIsFullException;
-import sky.core.org.app.exceptions.InvalidNameException;
+
 
 import java.util.*;
 
@@ -43,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
         } else {
             employees.put(employee.getFullName(), employee);
-            System.out.println("Сотрудникс именем " + employee.getFullName() + "  добавлен");
+            System.out.println("Сотрудник с именем " + employee.getFullName() + "  добавлен");
         }
         return new Employee(firstName, lastName);
     }
@@ -70,13 +70,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    public void isUpperCaseFirstLetterInTheName(String... names) {
-        for (String s : names) {
-            boolean isUpperChar = Character.isUpperCase(s.charAt(0));
-            if (!isUpperChar) {
-                throw new InvalidNameException(s);
-            }
-        }
+    public Map<String, Employee> getEmployees() {
+        return employees;
     }
 
 }
