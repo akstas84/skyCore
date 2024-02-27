@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import sky.core.org.app.entity.Employee;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import static java.awt.geom.Path2D.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,8 +35,8 @@ public class DepartmentServiceImplTest {
     @Test
     void findEmployeesByDepartmentSortedByNameSurname() {
         when(employeeService.findAll()).thenReturn(EMPLOYEES);
-        // ?
-        departmentServiceImpl.findEmployeesByDepartmentSortedByNameSurname(DEPARTMENT_ID);
+        Collection<Employee> sorted = departmentServiceImpl.findEmployeesByDepartmentSortedByNameSurname(DEPARTMENT_ID);
+        assertEquals(MIN_SALARY_EMPLOYEE, sorted.stream().findFirst().orElse(MIN_SALARY_EMPLOYEE));
     }
 
     @Test
