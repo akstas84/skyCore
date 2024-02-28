@@ -36,7 +36,7 @@ public class DepartmentServiceImplTest {
     void findEmployeesByDepartmentSortedByNameSurname() {
         when(employeeService.findAll()).thenReturn(EMPLOYEES);
         Collection<Employee> sorted = departmentServiceImpl.findEmployeesByDepartmentSortedByNameSurname(DEPARTMENT_ID);
-        assertEquals(MIN_SALARY_EMPLOYEE, sorted.stream().findFirst().orElse(MIN_SALARY_EMPLOYEE));
+        assertEquals(MIN_SALARY_EMPLOYEE, sorted.stream().findFirst().get());
     }
 
     @Test
@@ -60,8 +60,7 @@ public class DepartmentServiceImplTest {
     @Test
     void employeesGroupedByDepartment() {
         when(employeeService.findAll()).thenReturn(EMPLOYEES);
-        departmentServiceImpl.employeesGroupedByDepartment();
-        //?
+        assertTrue(departmentServiceImpl.employeesGroupedByDepartment().containsValue(EMPLOYEES));
     }
 
 }
