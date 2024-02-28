@@ -32,3 +32,8 @@ out/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# add file to index
+!pom.xml
+/src/test/java/sky.core.org.app/DepartmentServiceTest.java
+/src/test/java/sky.core.org.app/EmployeeServiceTest.java
